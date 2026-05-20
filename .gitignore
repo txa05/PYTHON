@@ -1,0 +1,19 @@
+# --- Ambiente Virtual ---
+venv/
+env/
+ENV/
+.env
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- IDE e Editor (VS Code) ---
+.vscode/
+.idea/
+
+# --- Sistema Operacional (Linux/Ubuntu) ---
+.DS_Store
+Thumbs.db
+*~
