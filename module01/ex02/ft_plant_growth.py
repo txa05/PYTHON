@@ -1,30 +1,30 @@
 #!/usr/bin/env python3
 
 class	Plant:
-	def __init__(self, name, heigh, age, plusAge, plusCm):
+	def __init__(self, name, age, plusAge, heigh, plusCm):
 		self.name = name
 		self.heigh = heigh
-		self.age = age
+		self._age = age
 		self.plusAge = plusAge
 		self.plusCm = plusCm
 	def show(self):
-		print(f"{self.name}: {self.heigh}cm, {self.age} days old")
+		print(f"{self.name}: {round(self.heigh, 1)}cm, {self._age} days old")
 
-	def grow(self, time):
-		for i in range(time):
-			print(f"=== Day {i + 1} ===")
-			self.age += self.plusAge
+	def grow(self):
 			self.heigh += self.plusCm
-			print(f"{self.name}: {self.heigh:.1f}cm, {self.age} days old")
+	def age(self):
+			self._age += self.plusAge
 
 def	main():
-	rose = Plant("Rose", 25.0, 30, 1, 0.8)
+	rose = Plant("Rose", 30, 1, 25.0, 0.8)
 	print("=== Garden Plant Growth ===")
 	rose.show()
-	days = 7
-	rose.grow(days)
-	print(f"Growth this week: {rose.plusCm * days:.1f}cm")
-	
+	for i in range(7):
+		print(f"=== Day {i + 1} ===")
+		rose.age()
+		rose.grow()
+		rose.show()
+	print(f"Growth this week: {round((i + 1) * rose.plusCm, 1)}cm")
 
 if __name__ == "__main__":
 	main()
