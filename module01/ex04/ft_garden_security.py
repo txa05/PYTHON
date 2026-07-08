@@ -36,7 +36,7 @@ class	Plant:
 		self._plusCm = plusCm
 
 def	main():
-	print("=== Print Factory Output ===")
+	print("=== Garden Security system ===")
 	rose = Plant("Rose", 10, 15.0)
 	
 	print(f"Plant created:", end=' ')
