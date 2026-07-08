@@ -54,6 +54,8 @@ def	main():
 	rose.set_age(-2)
 	rose.set_heigh(-4)
 
+	print("")
+
 	print("Current state:", end=' ')
 	rose.show()
 
