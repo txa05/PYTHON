@@ -59,6 +59,18 @@ class Flower(Plant):
         else:
             print("", self._name.capitalize(), "has not bloomed yet")
 
+class Tree(Plant):
+    def __init__(self, name, age, height, trunk_diameter):
+        super().__init__(name, age, height)
+        self._trunk_diameter = trunk_diameter
+
+    def produce_shade(self):
+        print(f"Tree {self._name.capitalize()} now produces a shade of {round(self._height, 1)}cm long and {round(self._trunk_diameter, 1)}cm wide")
+    
+    def show(self):
+        super().show()
+        print(f"Trunk diameter: {round(self._trunk_diameter, 1)}cm")
+
 def main():
     print("=== Garden Plant Types ===\n===Flower")
     rose = Flower("rose", 10, 15.0, "red")
@@ -67,7 +79,11 @@ def main():
     rose.bloom()
     rose.show()
 
-
+    print("\n===Tree")
+    oak = Tree("oak", 365, 200.0, 5.0)
+    oak.show()
+    print("[asking the oak to produce shade]")
+    oak.produce_shade()
 
 if __name__ == "__main__":
     main()
