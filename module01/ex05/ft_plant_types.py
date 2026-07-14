@@ -71,19 +71,43 @@ class Tree(Plant):
         super().show()
         print(f"Trunk diameter: {round(self._trunk_diameter, 1)}cm")
 
+class Vegetable(Plant):
+    def __init__(self, name, age, height, harvest_season, nutri_value):
+        super().__init__(name, age, height)
+        self._nutri_value = nutri_value
+        self._harvest_season = harvest_season 
+
+    def show(self):
+        super().show()
+        print(f"Harvest season: {self._harvest_season}\nNutritional value: {self._nutri_value}")
+    
+    def grow(self):
+        super().grow()
+        self._nutri_value += 1
+
+
 def main():
-    print("=== Garden Plant Types ===\n===Flower")
+    print("=== Garden Plant Types ===\n=== Flower")
     rose = Flower("rose", 10, 15.0, "red")
     rose.show()
     print("[asking the", rose.get_name(),"to bloom]")
     rose.bloom()
     rose.show()
 
-    print("\n===Tree")
+    print("\n=== Tree")
     oak = Tree("oak", 365, 200.0, 5.0)
     oak.show()
     print("[asking the oak to produce shade]")
     oak.produce_shade()
 
+    print("\n=== Vegetable")
+    tomato = Vegetable("tomato", 10, 5.0, "April", 0)
+    tomato.addHeigh(2.1)
+    tomato.show()
+    print(f"[make {tomato.get_name()} grow and age for 20 days]")
+    for i in range(20):
+        tomato.age()
+        tomato.grow()
+    tomato.show()
 if __name__ == "__main__":
     main()
