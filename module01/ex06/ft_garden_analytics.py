@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 class	Plant:
 	def __init__(self, name, age, height):
 		self._name = name
@@ -5,16 +7,17 @@ class	Plant:
 		self._age = age
 		self._plusAge = 1
 		self._plusCm = 0.8
+		self.status = self.PlantStatus()
 	def show(self):
 		print(f"{self._name.capitalize()}: {round(self._height, 1)}cm, {self._age} days old")
-		self.PlantStatus.incrShowState()
+		self.status.incrShowState()
 
 	def grow(self):
 			self._height += self._plusCm
-			self.PlantStatus.incrGrowState()
+			self.status.incrGrowState()
 	def age(self):
 			self._age += self._plusAge
-			self.PlantStatus.incrAgeState()
+			self.status.incrAgeState()
 	
 	def set_age(self, age):
 		if (age < 0):
@@ -48,8 +51,8 @@ class	Plant:
 		return cls(name, age, height)
 	
 	@staticmethod
-	def is_old(obj):
-		return obj._age > 365
+	def is_old(age):
+		return age > 365
 	
 	class	PlantStatus:
 		def	__init__(self):
@@ -85,3 +88,76 @@ class Flower(Plant):
             print("", self._name.capitalize(), " is blooming beautifully!")
         else:
             print("", self._name.capitalize(), "has not bloomed yet")
+
+class	Tree(Plant):
+	def __init__(self, name, age, height, trunk_diameter):
+		super().__init__(name, age, height)
+		self._trunk_diameter = trunk_diameter
+		self.status = self.PlantStatus()
+		
+	class	PlantStatus(Plant.PlantStatus):
+		def	__init__(self):
+			super().__init__()
+			self._produce_shade_calls = 0
+
+		def displayStatus(self):
+			super().displayStatus()
+			print(f"{self._produce_shade_calls} shade")
+			
+	def produce_shade(self):
+		print(f"Tree {self._name.capitalize()} now produces a shade of {round(self._height, 1)}cm long and {round(self._trunk_diameter, 1)}cm wide")
+		self.status._produce_shade_calls += 1
+		
+	def show(self):
+		super().show()
+		print(f"Trunk diameter: {round(self._trunk_diameter, 1)}cm")
+
+class Vegetable(Plant):
+    def __init__(self, name, age, height, harvest_season, nutri_value):
+        super().__init__(name, age, height)
+        self._nutri_value = nutri_value
+        self._harvest_season = harvest_season 
+
+    def show(self):
+        super().show()
+        print(f"Harvest season: {self._harvest_season}\nNutritional value: {self._nutri_value}")
+    
+    def grow(self):
+        super().grow()
+        self._nutri_value += 1
+
+
+def	main():
+	print("=== Garden Analytics ===\n=== Check year-old")
+	print("is 30 days old than a year? —>", Plant.is_old(30))
+	print("is 400 days old than a year? —>", Plant.is_old(400))
+	print("\n=== Flower")
+	rose = Flower("rose", 10, 15.0, "red")
+	rose.show()
+	print("[statistics for rose]")
+	rose.status.displayStatus()
+	print("[asking the", rose.get_name(),"to grow and bloom]")
+	rose.bloom()
+	rose.grow()
+	rose.show()
+	print("[statistics for rose]")
+	rose.status.displayStatus()
+
+	print("\n=== Tree")
+	oak = Tree("oak", 365, 200.0, 5.0)
+	oak.show()
+	print("[statistics for oak]")
+	oak.status.displayStatus()
+	print("[asking the oak to produce shade]")
+	oak.produce_shade()
+	print("[statistics for oak]")
+	oak.status.displayStatus()
+
+	print("\n=== Anonimous")
+	unknown = Plant.create_plant("Unknown plant", 0, 0.0)
+	unknown.show()
+	print(f"[statistics for {unknown.get_name()}]")
+	unknown.status.displayStatus()
+
+if __name__ == "__main__":
+    main()
