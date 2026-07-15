@@ -89,6 +89,20 @@ class Flower(Plant):
         else:
             print("", self._name.capitalize(), "has not bloomed yet")
 
+class	seed(Flower):
+	def __init__(self, name, age, height, color):
+		super().__init__(name, age, height, color)
+		self._bloomed = False
+		self._seed = 0
+	
+	def	show(self):
+		super().show()
+		print(f" seeds: {self._seed}")
+
+	def grow(self):
+		super().grow()
+		self._seed += 2
+
 class	Tree(Plant):
 	def __init__(self, name, age, height, trunk_diameter):
 		super().__init__(name, age, height)
@@ -111,7 +125,7 @@ class	Tree(Plant):
 	def show(self):
 		super().show()
 		print(f"Trunk diameter: {round(self._trunk_diameter, 1)}cm")
-
+		
 class Vegetable(Plant):
     def __init__(self, name, age, height, harvest_season, nutri_value):
         super().__init__(name, age, height)
@@ -152,6 +166,16 @@ def	main():
 	oak.produce_shade()
 	print("[statistics for oak]")
 	oak.status.displayStatus()
+
+	print("\n=== Seed")
+	sunflower = seed("sunflower", 45, 80.0, "yellow")
+	sunflower.show()
+	print(f"[make sunflower grow, age and blom]")
+	sunflower.grow()
+	sunflower.age()
+	sunflower.bloom()
+	sunflower.show()
+	sunflower.status.displayStatus()
 
 	print("\n=== Anonimous")
 	unknown = Plant.create_plant("Unknown plant", 0, 0.0)
