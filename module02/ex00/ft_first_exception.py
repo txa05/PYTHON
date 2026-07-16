@@ -5,24 +5,21 @@ def	input_temperature(temp_str):
 	return value
 
 def	test_temperature():
-	print("input data is '25'")
-	value = input_temperature("25")
-	print(f"Temperature is now {value}°C")
+	inputs = ["25", "abc"]
+	for i in inputs:
+		print(f"Input data is '{i}'")
+		try:
+			value = input_temperature(i)
+			print(f"Temperature is now {value}°C\n")
+		except ValueError as e:
+			print(f"caugh input_temperature error: {e}\n")
+	
+	print("All tests completed — program didn't crash")
 
-	print("\nInput data is 'abc'")
-	value = input_temperature("abc")
-	print(f"temperature is now {value}°C")
 
 def	main():
-	try:
-		print("=== Garden Temperature ===\n")
-		test_temperature()
-	except ValueError:
-		print("Não podemos converter para número")
-	except:
-		print("Há algum erro no valor da temperatura actual\n")
-	finally:
-		print("\nAll tests completed — program didn't crash")
+	print("=== Garden Temperature\n")
+	test_temperature()
 
 if	__name__ == "__main__":
 	main()
