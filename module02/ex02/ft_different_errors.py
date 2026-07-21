@@ -17,6 +17,8 @@ def	test_error_types():
 			garden_operations(i)
 		except Exception as err:
 			print(f"Caught {err.__class__.__name__}: {err}")
+	
+	print("\nAll error types tested successfully!")
 
 def	main():
 	print("=== Garden Error Types Demo ===")
