@@ -9,9 +9,11 @@ def	garden_operations(operation_number):
 		file = open("tchi.txt")
 	elif operation_number == 3:
 		k  = "testing operation" + 3
+	elif operation_number == 4:
+		print("Operation completed successfully")
 
 def	test_error_types():
-	for i in range (4):
+	for i in range (5):
 		print(f"testing operation {i}...")
 		try:
 			garden_operations(i)
